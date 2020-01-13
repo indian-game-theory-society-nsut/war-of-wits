@@ -1,0 +1,65 @@
+@layout('layouts.app')
+
+
+@section('content')
+
+<!--
+    <h1> The Index Page </h1>
+-->
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Quiz Maker</h1>
+            <span class="subheading">A Quiz creating website by SR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        @each(quiz in quizzes)
+          <div class="post-preview">
+            <a href="/quiz/{{ quiz.id }}">
+              <h2 class="post-title">
+
+                  <br>
+                  {{ quiz.title }}
+                </h2>
+                <h3 class="post-subtitle">
+                  {{ quiz.topic }}
+                </h3>
+                <!--
+                <h3 class="post-subtitle">
+                  {{ post.content }}
+                </h3>
+                -->
+            </a>
+            <p class="post-meta">Created by
+              <a href="#"> {{ quiz.author.username }} </a>
+              on {{ quiz.createdAt }}
+            </p>
+          </div>
+          <hr>
+        @endeach
+        <!-- Pager -->
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="#">Older Quizzes &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+
+@endsection

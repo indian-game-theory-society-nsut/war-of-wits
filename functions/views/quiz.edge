@@ -1,0 +1,77 @@
+@layout('layouts.app')
+
+
+@section('content')
+
+
+
+<!--
+    <h1> The Post Page </h1>
+-->
+
+<!-- Page Header -->
+<!--
+<header class="masthead" style="background-image: url(' {{ quiz.image }} ')">
+-->
+<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+            <h1> {{ quiz.title }} </h1>
+            <h2 class="subheading"> {{ quiz.topic }}</h2>
+            <span class="meta">Created by
+            <a href="#"> {{ author.username }} </a>
+            Lorem Ipsum</span>
+        </div>
+        </div>
+    </div>
+    </div>
+</header>
+<!-- Post Content -->
+<!--
+<article>
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {{-- double brackets displays content as HTML code --}}
+            {{--  {{ quiz.content }}  --}}
+
+            {{-- triple brackets displays content as proper text --}}
+            {{{ quiz.content }}}
+        </div>
+    </div>
+    </div>
+</article>
+
+<hr>
+-->
+Quiz Title: {{ quiz.title }}<br>
+Quiz Topic: {{ quiz.topic }}<br>
+Quiz Author: {{ quiz.author }}<br>
+@each(question in questions)
+    {{ ($loop.index + 1) }}: {{ question.answer }}<br>
+    {{ ($loop.index + 1) }}: {{ question.quiz }}<br>
+    <br>
+@endeach
+
+<p id="countdown_timer"></p>
+<p id="start_time">{{ quiz.start_time.toDate() }}</p>
+<p id="end_time">{{ quiz.end_time.toDate() }}</p>
+
+<form action="/response/{{quiz_id}}" method="post" id="response_form">
+</form>
+
+@endsection
+
+@section('styles')
+
+
+@endsection
+
+@section('scripts')
+    <script src="/js/quiz.js"></script>
+
+
+@endsection
