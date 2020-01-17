@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="create.html">New Quiz</a>
+        <a href="login.html">Login</a>
+
+        <!-- We do not require a page for logout, just the link -->
+        <a href="logout.html">Logout</a>
+    </nav>
+
+
+    <h1>Login Page</h1>
+    <!-- Page Header -->
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
+    <hr>
+    <p>Copyright &copy; Your Website 2019</p>
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+
+    <script>
+        const config = {
+            apiKey: "AIzaSyCQ3Is6JwWXFQZVRSyc9nedqHwLuQ2damc",
+            authDomain: "war-of-wits.firebaseapp.com"
+        };
+        if (!firebase.apps.length) {
+            firebase.initializeApp(config);
+        }
+    </script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+    <script src="/js/login.js"></script>
+
+</body>
+</html>
+

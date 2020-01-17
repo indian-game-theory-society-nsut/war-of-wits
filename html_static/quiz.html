@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="create.html">New Quiz</a>
+        <a href="login.html">Login</a>
+
+        <!-- We do not require a page for logout, just the link -->
+        <a href="logout.html">Logout</a>
+    </nav>
+
+    <h1>Attempt Quiz</h1>
+
+    <h1> Quiz Title </h1>
+    <h2> Quiz Topic </h2>
+    <span class="meta">
+        Created by <a href="#"> Lorem Ipsum </a>
+    </span>
+
+    <form action="/response/store" method="POST" id="response_form">
+        <div class="question_node">
+            <img src="QuestionImage.jpg" alt="Question Image">
+            <label>Question</label>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit amet et sapiente, veritatis architecto</p>
+            <label>Answer</label>
+            <input type="text" name="answer_text" class="form-control" placeholder="Answer ...">
+        </div>
+        <hr>
+
+        <div class="question_node">
+            <img src="QuestionImage.jpg" alt="Question Image">
+            <label>Question</label>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit amet et sapiente, veritatis architecto</p>
+            Select the correct answer<br>
+            <input type="radio" name="answer_single" value="1">Option 1
+            <input type="radio" name="answer_single" value="2">Option 2
+            <input type="radio" name="answer_single" value="3">Option 3
+            <input type="radio" name="answer_single" value="4">Option 4
+        </div>
+        <hr>
+
+        <div class="question_node">
+            <img src="QuestionImage.jpg" alt="Question Image">
+            <label>Question</label>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit amet et sapiente, veritatis architecto</p>
+            Select the correct answers<br>
+            <input type="checkbox" name="answer_multiple" value="1">Option 1
+            <input type="checkbox" name="answer_multiple" value="2">Option 2
+            <input type="checkbox" name="answer_multiple" value="3">Option 3
+            <input type="checkbox" name="answer_multiple" value="4">Option 4
+
+        </div>
+        <hr>
+        
+        <button type="submit">Submit Quiz</button>
+    </form>
+
+    <ul id="quiz-errors-list">
+    </ul>
+    <hr>
+    <p>Copyright &copy; Your Website 2019</p>
+
+</body>
+</html>
+

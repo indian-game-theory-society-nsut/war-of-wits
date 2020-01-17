@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="create.html">New Quiz</a>
+        <a href="login.html">Login</a>
+
+        <!-- We do not require a page for logout, just the link -->
+        <a href="logout.html">Logout</a>
+    </nav>
+
+    <!-- Page Header -->
+    <h1>New Quiz</h1>
+
+    <form action="/quizzes/store" method="POST" onsubmit="return validateData()"> 
+    <!-- encType Tells that multimedia is encrypted and sent to server -->
+
+        <label>Quiz Title</label>
+        <input type="text" name="quizTitle" class="form-control" placeholder="Quiz Title ...">
+
+        <label>Quiz Topic</label>
+        <input type="text" name="quizTopic" class="form-control" placeholder="Quiz Topic ...">
+
+        <label>Quiz Start Time</label>
+        <input name="start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" type="text">
+        <input name="start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')" type="text">
+
+        <label>Quiz End Time</label>
+        <input name="end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" type="text">
+        <input name="end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')" type="text">
+        <sub>Time should be in IST (GMT+0530)</sub>
+
+        <input type="text" name="quiz_id" hidden id="quiz_id_tag">
+                
+        <p id="questionList">
+            <div class="question_node">
+                <div>
+                    <button onclick="removeQuestion(this)" type="button">
+                        <i class="fa fa-minus"></i>
+                    </button>
+            
+                    <label>Question</label>
+                    <textarea name="question_text" placeholder="Question ..." cols="30" rows="3" class="form-control"></textarea>
+                    <label>Answer</label>
+                    <input type="text" name="answer_text" class="form-control" placeholder="Answer ...">
+            
+                    <input type="text" name="question_type" class="form-control-file" value=${selectQuestionType} hidden>
+                    <input type="text" name="question_id" class="form-control-file question-id-class" value=${question_id} hidden>
+                </div>
+            
+                <div>
+                    <label>Image</label>
+                    <progress value="0" max="100" class="uploader">0%</progress>
+                    <input type="file" name="questionImage" class="form-control-file question-image">
+                    <input type="text" name="questionImageURL" class="form-control-file question-image-url" value="" hidden>
+                    <button onclick="uploadImage(this)" type="button">Upload</button>
+                </div>
+            </div>
+            <hr>
+
+            <div class="question_node">
+                <div>
+                    <button onclick="removeQuestion(this)" style="float:right;margin-top:10px;margin-bottom:10px;" type="button">
+                        <i class="fa fa-minus"></i>
+                    </button>
+            
+                    <label>Question</label>
+                    <textarea name="question_text" placeholder="Question ..." cols="30" rows="3" class="form-control"></textarea>
+                    Select the correct answer<br>
+                    <select name="answer_single">
+                        <option value="">correct answer</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select><br>
+                    <input type="text" name="option_single1" placeholder="Option 1 ..." style="outline: none"><br>
+                    <input type="text" name="option_single2" placeholder="Option 2 ..." style="outline: none"><br>
+                    <input type="text" name="option_single3" placeholder="Option 3 ..." style="outline: none"><br>
+                    <input type="text" name="option_single4" placeholder="Option 4 ..." style="outline: none"><br>
+                            
+                    <input type="text" name="question_type" class="form-control-file" value=${selectQuestionType} hidden>
+                    <input type="text" name="question_id" class="form-control-file question-id-class" value=${question_id} hidden>
+                </div>
+            
+                <div>
+                    <label>Image</label>
+                    <progress value="0" max="100" class="uploader">0%</progress>
+                    <input type="file" name="questionImage" class="form-control-file question-image">
+                    <input type="text" name="questionImageURL" class="form-control-file question-image-url" value="" hidden>
+                    <button onclick="uploadImage(this)" type="button">Upload</button>
+                </div>
+            </div>
+            <hr>
+
+            <div class="question_node">
+                <div>
+                    <button onclick="removeQuestion(this)" style="float:right;margin-top:10px;margin-bottom:10px;" type="button">
+                        <i class="fa fa-minus"></i>
+                    </button>
+            
+                    <label>Question</label>
+                    <textarea name="question_text" placeholder="Question ..." cols="30" rows="3" class="form-control"></textarea>
+
+                    Select the correct answers<br>
+                    <select name="answer_multiple1">
+                        <option value="">correct answer</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <input type="text" name="option_multiple1" placeholder="Option 1 ..." style="outline: none"><br>
+                    <select name="answer_multiple2">
+                        <option value="">correct answer</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <input type="text" name="option_multiple2" placeholder="Option 2 ..." style="outline: none"><br>
+                    <select name="answer_multiple3">
+                        <option value="">correct answer</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <input type="text" name="option_multiple3" placeholder="Option 3 ..." style="outline: none"><br>
+                    <select name="answer_multiple4">
+                        <option value="">correct answer</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <input type="text" name="option_multiple4" placeholder="Option 4 ..." style="outline: none"><br>
+                            
+                    <input type="text" name="question_type" class="form-control-file" value=${selectQuestionType} hidden>
+                    <input type="text" name="question_id" class="form-control-file question-id-class" value=${question_id} hidden>
+                </div>
+            
+                <div>
+                    <label>Image</label>
+                    <progress value="0" max="100" class="uploader">0%</progress>
+                    <input type="file" name="questionImage" class="form-control-file question-image">
+                    <input type="text" name="questionImageURL" class="form-control-file question-image-url" value="" hidden>
+                    <button onclick="uploadImage(this)" type="button">Upload</button>
+                </div>
+            </div>
+            <hr>
+
+
+        </p>
+        <select id="selectAddImage">
+            <option value="">Add Image</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <select id="selectQuestionType">
+            <option value="Single">Single Correct</option>
+            <option value="">Question Type</option>
+            <option value="Text">Text</option>
+            <option value="Multiple">Multiple Correct</option>
+        </select>
+        <button onclick="addQuestion()" type="button">Add Question</button>
+        <button type="submit">Create Quiz</button>
+    </form>
+
+    <ul id="quiz-errors-list">
+    </ul>
+    <hr>
+    <p>Copyright &copy; Your Website 2019</p>
+
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase.js"></script>
+    <script src="js/create.js"></script>
+
+</body>
+</html>
+
+
+
+

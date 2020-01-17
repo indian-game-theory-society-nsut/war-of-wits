@@ -98,8 +98,8 @@ app.set('views',`${__dirname}/views`)
 // ============================================ Creating actions for requests ============================================
 app.get('/', homePageController)
 
-app.get('/quizzes/new', authMiddleware, createQuizController)
-app.post('/quizzes/store', authMiddleware, storeQuizMiddleware, storeQuizController)
+app.get('/quizzes/new', createQuizController)
+app.post('/quizzes/store', storeQuizMiddleware, storeQuizController)
 app.get('/quiz/:id', getQuizController)
 app.post('/response/:id', authMiddleware, storeResponseController)
 

@@ -8,18 +8,29 @@ module.exports = (req, res, next) => {
         return res.redirect('/')
     }
     // Fetch user from database
-    db.collection('user').where('id','==',req.session.userId).get()
-    .then(doc => {
-        if (doc.empty) {
-            console.log('No such user from auth middleware');
-            return res.redirect('/')
-        }
+    admin.auth().getUser(req.session.userId)
+    .then(function(userRecord) {
+        // See the UserRecord reference doc for the contents of userRecord.
+        console.log("Successfully fetched user data");
+        // console.log(userRecord.toJSON());
         return next();
     })
-    .catch(err => {
-        console.log('Error getting user from auth middleware' + err);
+    .catch(function(error) {
+        console.log("Error fetching user data:", error);
         return res.redirect('/')
     });
+    // db.collection('user').where('id','==',req.session.userId).get()
+    // .then(doc => {
+    //     if (doc.empty) {
+    //         console.log('No such user from auth middleware');
+    //         return res.redirect('/')
+    //     }
+    //     return next();
+    // })
+    // .catch(err => {
+    //     console.log('Error getting user from auth middleware' + err);
+    //     return res.redirect('/')
+    // });
 
     // verify user
 

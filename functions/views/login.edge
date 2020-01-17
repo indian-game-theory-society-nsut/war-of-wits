@@ -21,8 +21,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <form action="/users/login" method="POST"> 
+
+
                 <!-- encType Tells that multimedia is encrypted and sent to server -->
+            <!--
+
+            <form action="/users/login" method="POST"> 
 
                     <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
@@ -42,10 +46,25 @@
                     <button class="btn btn-primary">Login</button>
                 </div>
             </form>
+
+
+            -->
         </div>
     </div>
 </div>
 
+<div id="firebaseui-auth-container"></div>
+<div id="loader">Loading...</div>
+
 
 @endsection
 
+@section('firebase')
+
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+<script src="/js/login.js"></script>
+
+
+@endsection
