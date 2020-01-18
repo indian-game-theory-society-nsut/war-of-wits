@@ -180,3 +180,35 @@
 
 
 
+.Quiz-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(236, 218, 218);
+  position: relative;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 10px 0 20px 0;
+}
+
+.quiz-title{
+  margin-bottom: 20px;
+  margin-top:10px;
+}
+
+
+.events-section form .form-control {
+    height: 45px;
+    width: 120%;
+    border-radius: 5%;
+    color: #4e4949;
+}
+.contact-area form .textarea-hight-full {
+    height: 100%;
+}
+.contact-area form .btn {
+    margin-top: 30px;
+}
+.map-col {
+    display: block;
+}
