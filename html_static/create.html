@@ -6,35 +6,172 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="styles.css" />
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <style>
+        /* Nav Bar */
+        .nav {
+          height: 80px;
+          width: 100% !important;
+          background-color: #1f1f1f;
+          padding-top: 20px;
+    
+        }
+    
+        .nav>.nav-header {
+          display: inline;
+        }
+    
+        .nav>.nav-header>.nav-title {
+          display: inline-block;
+          font-size: 22px;
+    
+          padding: 10px 10px 10px 10px;
+        }
+    
+        .nav>.nav-btn {
+          display: none;
+        }
+    
+        .nav>.nav-links {
+          display: inline;
+          float: right;
+          font-size: 18px;
+        }
+    
+        .nav>.nav-links>a {
+          display: inline-block;
+          padding: 13px 10px 13px 10px;
+          text-decoration: none;
+          color: white;
+        }
+    
+        .nav>.nav-links>a:hover {
+          background-color: #232323;
+        }
+    
+        .nav>#nav-check {
+          display: none;
+        }
+    
+        /* Nav Bar media Queries */
+    
+        @media (max-width:680px) {
+          .nav>.nav-btn {
+            display: inline-block;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+          }
+    
+          .nav>.nav-btn>label {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            padding: 13px;
+          }
+    
+          .nav>.nav-btn>label:hover,
+          .nav #nav-check:checked~.nav-btn>label {
+            background-color: rgba(0, 0, 0, 0.3);
+          }
+    
+          .nav>.nav-btn>label>span {
+            display: block;
+            width: 25px;
+            height: 10px;
+            border-top: 2px solid white;
+          }
+    
+          .nav>.nav-links {
+            position: absolute;
+            display: block;
+            width: 100%;
+            background-color: #232323;
+            height: 0px;
+            transition: all 0.3s ease-in;
+            overflow-y: hidden;
+            top: 100px;
+            left: 0px;
+          }
+    
+          .nav>.nav-links>a {
+            display: block;
+            width: 100%;
+          }
+    
+          .nav>#nav-check:not(:checked)~.nav-links {
+            height: 0px;
+          }
+    
+          .nav>#nav-check:checked~.nav-links {
+            height: calc(50vh);
+            overflow-y: auto;
+          }
+        }
+      </style>
+
+
+
 </head>
 <body>
 
-    <nav>
+     <!-- Nav Bar -->
+ <header class="main-header">
+    <div class="nav">
+      <input type="checkbox" id="nav-check">
+      <div class="nav-header">
+        <div class="nav-title">
+          <a class="brand-logo">
+            <img src="https://media-exp2.licdn.com/dms/image/C4E0BAQHgMPWUq-kVEw/company-logo_200_200/0?e=1587600000&v=beta&t=zdSGSDkpnBLck7SApmNO3T0ZVH_WJhF32NX-nrvCQV0" />
+            
+          </a>
+        </div>
+      </div>
+      <div class="nav-btn" style="padding-top: 40px;">
+        <label for="nav-check">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      </div>
+
+      <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="create.html">New Quiz</a>
         <a href="login.html">Login</a>
-
+        
         <!-- We do not require a page for logout, just the link -->
         <a href="logout.html">Logout</a>
-    </nav>
+      </div>
+    </div>
+  </header>
 
+  <section class="events-section" id="event">
     <!-- Page Header -->
-    <h1>New Quiz</h1>
+    <h1 class="events-title accent-text">
+        <span class="stroke-text-white">New </span>Quiz
+      </h1>
+
 
     <form action="/quizzes/store" method="POST" onsubmit="return validateData()"> 
     <!-- encType Tells that multimedia is encrypted and sent to server -->
-
-        <label>Quiz Title</label>
+        
+        <div class = "Quiz-header">
+        <label class="quiz-title accent-text">Quiz Title</label>
         <input type="text" name="quizTitle" class="form-control" placeholder="Quiz Title ...">
 
-        <label>Quiz Topic</label>
+        <label class="quiz-title accent-text">Quiz Topic</label>
         <input type="text" name="quizTopic" class="form-control" placeholder="Quiz Topic ...">
 
-        <label>Quiz Start Time</label>
+        <label class="quiz-title accent-text">Quiz Start Time</label>
         <input name="start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" type="text">
         <input name="start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')" type="text">
 
-        <label>Quiz End Time</label>
+        <label class="quiz-title accent-text">Quiz End Time</label>
         <input name="end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" type="text">
         <input name="end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')" type="text">
         <sub>Time should be in IST (GMT+0530)</sub>
@@ -44,11 +181,11 @@
         <p id="questionList">
             <div class="question_node">
                 <div>
-                    <button onclick="removeQuestion(this)" type="button">
+                    <button onclick="removeQuestion(this)" type="button" class="register-button">
                         <i class="fa fa-minus"></i>
                     </button>
             
-                    <label>Question</label>
+                    <label class="accent-text">Question</label>
                     <textarea name="question_text" placeholder="Question ..." cols="30" rows="3" class="form-control"></textarea>
                     <label>Answer</label>
                     <input type="text" name="answer_text" class="form-control" placeholder="Answer ...">
@@ -62,18 +199,19 @@
                     <progress value="0" max="100" class="uploader">0%</progress>
                     <input type="file" name="questionImage" class="form-control-file question-image">
                     <input type="text" name="questionImageURL" class="form-control-file question-image-url" value="" hidden>
-                    <button onclick="uploadImage(this)" type="button">Upload</button>
+                    <button onclick="uploadImage(this)" type="button" class="register-button">Upload</button>
                 </div>
             </div>
+        </div>
             <hr>
 
             <div class="question_node">
                 <div>
-                    <button onclick="removeQuestion(this)" style="float:right;margin-top:10px;margin-bottom:10px;" type="button">
+                    <button onclick="removeQuestion(this)" style="float:right;margin-top:10px;margin-bottom:10px;" type="button" class="register-button">
                         <i class="fa fa-minus"></i>
                     </button>
             
-                    <label>Question</label>
+                    <label class="accent-text">Question</label>
                     <textarea name="question_text" placeholder="Question ..." cols="30" rows="3" class="form-control"></textarea>
                     Select the correct answer<br>
                     <select name="answer_single">
@@ -97,18 +235,18 @@
                     <progress value="0" max="100" class="uploader">0%</progress>
                     <input type="file" name="questionImage" class="form-control-file question-image">
                     <input type="text" name="questionImageURL" class="form-control-file question-image-url" value="" hidden>
-                    <button onclick="uploadImage(this)" type="button">Upload</button>
+                    <button onclick="uploadImage(this)" type="button" class="register-button">Upload</button>
                 </div>
             </div>
             <hr>
 
             <div class="question_node">
                 <div>
-                    <button onclick="removeQuestion(this)" style="float:right;margin-top:10px;margin-bottom:10px;" type="button">
+                    <button onclick="removeQuestion(this)" style="float:right;margin-top:10px;margin-bottom:10px;" type="button"class="register-button">
                         <i class="fa fa-minus"></i>
                     </button>
             
-                    <label>Question</label>
+                    <label class="accent-text">Question</label>
                     <textarea name="question_text" placeholder="Question ..." cols="30" rows="3" class="form-control"></textarea>
 
                     Select the correct answers<br>
@@ -146,7 +284,7 @@
                     <progress value="0" max="100" class="uploader">0%</progress>
                     <input type="file" name="questionImage" class="form-control-file question-image">
                     <input type="text" name="questionImageURL" class="form-control-file question-image-url" value="" hidden>
-                    <button onclick="uploadImage(this)" type="button">Upload</button>
+                    <button onclick="uploadImage(this)" type="button" class="register-button">Upload</button>
                 </div>
             </div>
             <hr>
@@ -164,10 +302,10 @@
             <option value="Text">Text</option>
             <option value="Multiple">Multiple Correct</option>
         </select>
-        <button onclick="addQuestion()" type="button">Add Question</button>
-        <button type="submit">Create Quiz</button>
+        <button onclick="addQuestion()" type="button" class="register-button">Add Question</button>
+        <button type="submit" class="register-button">Create Quiz</button>
     </form>
-
+</section>
     <ul id="quiz-errors-list">
     </ul>
     <hr>

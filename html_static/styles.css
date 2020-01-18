@@ -1,0 +1,214 @@
+@font-face {
+    font-family: "Coves";
+    src: url("./assets/Coves-Light.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "Litsans";
+    src: url("./assets/LitSans-Medium.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Coves;
+    color: white;
+    min-height: 100vh;
+    align-items: center;
+    max-width: none;
+  }
+  
+  main {
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+  header {
+    font-family: Litsans;
+  }
+  
+  section {
+    padding: 20px 80px;
+    font-family: Coves;
+    font-size: 1.125em;
+    min-height: 100vh;
+    border: none;
+  }
+  
+  img {
+    max-width: 100%;
+    display: block;
+  }
+  
+  .accent-text {
+    color: #e68625;
+  }
+  
+  .main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    padding: 0 40px;
+    background-color: #1f1f1f;
+  }
+  
+  .main-nav a {
+    color: inherit;
+    text-decoration: none;
+    padding: 1rem;
+  }
+  
+  .main-nav a:hover {
+    color: #adadad;
+    cursor: pointer;
+  }
+  
+  .main-nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.25em;
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .brand-logo img {
+    width: 45px;
+    height: 52px;
+  }
+  
+  .main-nav li {
+    margin-left: 1.5em;
+  }
+
+  
+
+  /* headeings */
+
+
+
+  
+  .stroke-text-white {
+    -webkit-text-stroke: 1px white;
+    color: transparent;
+  }
+
+
+  
+.event-card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .events-title {
+    font-family: Litsans;
+    font-size: 2.5em;
+    margin: 1em 0 2em;
+    text-decoration: none;
+  }
+  
+  .events-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2f2f42;
+    position: relative;
+    border: none;
+  }
+  
+
+  .event-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5em;
+    padding: 0 6em;
+  }
+  .event-image-wrapper,
+  .event-info {
+    flex: 0 1 50%;
+  }
+  .event-info {
+    margin: 0 1.3em;
+  }
+  
+  .event-image {
+    max-width: 30vw;
+  }
+  
+  a:link { 
+    text-decoration: none; 
+} 
+
+.event-tagline {
+    color: #adadad;
+}
+
+
+.register-button {
+    color: black;
+    background: #e68625;
+    border: 1.2px solid #e68625;
+    padding: 0.5em 1em;
+    font-family: Litsans;
+    font-size: 0.9em;
+  }
+  
+  .register-button:hover {
+    cursor: pointer;
+    background: #0e0e11;
+    border: 1.2px solid #e68625;
+    color: white;
+  }
+
+
+
+.Quiz-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(236, 218, 218);
+  position: relative;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 10px 0 20px 0;
+}
+
+.quiz-title{
+  margin-bottom: 20px;
+  margin-top:10px;
+}
+
+
+.events-section form .form-control {
+    height: 45px;
+    width: 120%;
+    border-radius: 5%;
+    color: #4e4949;
+}
+.contact-area form .textarea-hight-full {
+    height: 100%;
+}
+.contact-area form .btn {
+    margin-top: 30px;
+}
+.map-col {
+    display: block;
+}
