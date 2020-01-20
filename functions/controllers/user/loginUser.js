@@ -4,7 +4,7 @@ const admin = require('firebase-admin');
 const db = admin.firestore();
 
 module.exports = (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     req.session.userId = req.body.uid
     return res.redirect('/')
 

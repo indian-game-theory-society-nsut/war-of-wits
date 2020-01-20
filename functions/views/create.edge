@@ -1,137 +1,66 @@
 @layout('layouts.app')
 
+@section('title')
+New Quiz | War of Wits
+@endsection
+
+@section('styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@endsection
+
 @section('content')
-<!--
-<h1> Create New Post </h1> 
--->
-<!-- Page Header -->
-<header class="masthead" style="background-image: url('/img/contact-bg.jpg')">
-    <div class="overlay"></div>
-    <div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="page-heading">
-            <h1>New Quiz</h1>
-        </div>
-        </div>
-    </div>
-    </div>
-</header>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
+    <!-- Page Header -->
+    <h1 class="events-title accent-text">
+        <span class="stroke-text-white">New </span>Quiz
+      </h1>
 
-            <form action="/quizzes/store" method="POST" onsubmit="return validateData()"> 
-                <!-- encType Tells that multimedia is encrypted and sent to server -->
 
-                <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Quiz Title</label>
-                        <input type="text" name="quizTitle" class="form-control" placeholder="Quiz Title ...">
-                    </div>
-                </div>
+    <form action="/quizzes/store" method="POST" onsubmit="return validateData()"> 
+    <!-- encType Tells that multimedia is encrypted and sent to server -->
+        
+        <div class = "Quiz-header">
+        <label class="quiz-title accent-text">Quiz Title</label>
+        <input type="text" name="quizTitle" class="form-control" placeholder="Quiz Title ...">
 
-                <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Quiz Topic</label>
-                        <input type="text" name="quizTopic" class="form-control" placeholder="Quiz Topic ...">
-                    </div>
-                </div>
+        <label class="quiz-title accent-text">Quiz Topic</label>
+        <input type="text" name="quizTopic" class="form-control" placeholder="Quiz Topic ...">
 
-                <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Quiz Start Time</label>
-                        <input name="start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" type="text">
-                        <input name="start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')" type="text">
-                    </div>
-                </div>
+        <label class="quiz-title accent-text">Quiz Start Time</label>
+        <input name="start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" type="text">
+        <input name="start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')" type="text">
 
-                <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Quiz End Time</label>
-                        <input name="end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" type="text">
-                        <input name="end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')" type="text">
-                    </div>
-                </div>
-                <sub>Time should be in IST (GMT+0530)</sub>
-                <input type="text" name="quiz_id" hidden id="quiz_id_tag">
+        <label class="quiz-title accent-text">Quiz End Time</label>
+        <input name="end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" type="text">
+        <input name="end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')" type="text">
+        <sub>Time should be in IST (GMT+0530)</sub>
+
+        <input type="text" name="quiz_id" hidden id="quiz_id_tag">
                 
-                <p id="questionList">
-                    <!--
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label>Question</label>
-                            <textarea name="questionText" placeholder="Question ..." cols="30" rows="3" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    -->
-
-                    <!-- div.form-group>input.form-control-file -->
-                    <!--
-                    <div class="form-group-5">
-                        <label>Image</label>
-                        <input type="file" name="questionImage[]" class="form-control-file">
-                    </div>
-                    -->
-                </p>
-                <div class="form-group my-4 text-right">
-                    <select id="selectAddImage">
-                        <option value="">Add Image</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                    <select id="selectQuestionType">
-                        <option value="Single">Single Correct</option>
-                        <option value="">Question Type</option>
-                        <option value="Text">Text</option>
-                        <option value="Multiple">Multiple Correct</option>
-                    </select>
-                    <button class="btn btn-primary" onclick="addQuestion()" type="button">Add Question</button>
-                </div>
-                <div class="form-group my-4 text-center">
-                    <button class="btn btn-primary" type="submit">Create Quiz</button>
-                </div>
-            </form>
-
-            <ul class="list-group" id="quiz-errors-list">
-                <!--  <li class="list-group-item text-danger">Testing Error</li>  -->
-            </ul>
-
-        </div>
-    </div>
-</div>
+        <p id="questionList">
+        </p>
+        <select id="selectAddImage">
+            <option value="">Add Image</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <select id="selectQuestionType">
+            <option value="Single">Single Correct</option>
+            <option value="">Question Type</option>
+            <option value="Text">Text</option>
+            <option value="Multiple">Multiple Correct</option>
+        </select>
+        <button onclick="addQuestion()" type="button" class="register-button">Add Question</button>
+        <button type="submit" class="register-button">Create Quiz</button>
+    </form>
+    <ul id="quiz-errors-list">
+    </ul>
 
 @endsection
 
 @section('firebase')
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase.js"></script>
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<!--
-<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
-
-<script src="https://www.gstatic.com/firebase/7.6.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebase/7.6.2/firebase-firestore.js"></script>
--->
-
 @endsection
 
-    <!--  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">  -->
-
-
 @section('scripts')
-<script src="/js/create.js"></script>
-<!-- <script src="/js/connectfirebase.js"></script> -->
-
-
-    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('textarea').summernote();
-        });
-    </script> -->
-
+    <script src="/js/create.js"></script>
 @endsection

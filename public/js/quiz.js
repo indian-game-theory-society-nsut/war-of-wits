@@ -11,7 +11,7 @@ function printDate(date) {
     );
     return date.getDate() + ' ' + monthList[date.getMonth()] + ' ' + date.getFullYear() + ' ' + date.toLocaleTimeString();
 }
-  
+
 function countdownTimer() {
     function check(t) {
         if(t < 10) {
@@ -27,7 +27,7 @@ function countdownTimer() {
     var minutes = check(Math.floor((differenceDates % (1000 * 60 * 60)) / (1000 * 60)));
     var seconds = check(Math.floor((differenceDates % (1000 * 60)) / 1000));
 
-    document.getElementById("countdown_timer").innerHTML = days + "d <br><br>" + hours + ":" + minutes + ":" + seconds;
+    document.getElementById("countdown_timer").innerHTML = hours + ":" + minutes + ":" + seconds;
 
     if (differenceDates < 0) {
         console.log(interval_countdownTimer);

@@ -103,8 +103,8 @@ app.post('/quizzes/store', storeQuizMiddleware, storeQuizController)
 app.get('/quiz/:id', getQuizController)
 app.post('/response/:id', authMiddleware, storeResponseController)
 
-app.get('/auth/register', redirectIfAuthenticated, createUserController)
-app.post('/users/register', redirectIfAuthenticated, storeUserController)
+// app.get('/auth/register', redirectIfAuthenticated, createUserController)
+// app.post('/users/register', redirectIfAuthenticated, storeUserController)
 
 app.get('/auth/login', redirectIfAuthenticated, loginPageController)
 app.post('/users/login', redirectIfAuthenticated, loginUserController)

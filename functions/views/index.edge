@@ -1,65 +1,59 @@
 @layout('layouts.app')
 
+@section('title')
+War of Wits
+@endsection
+
+@section('styles')
+@endsection
 
 @section('content')
 
-<!--
-    <h1> The Index Page </h1>
--->
+    <!-- Page Header -->
 
-  <!-- Page Header -->
-  <header class="masthead" style="background-image: url('/img/home-bg.jpg')">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>Quiz Maker</h1>
-            <span class="subheading">A Quiz creating website by SR</span>
-          </div>
+      <h1 class="events-title accent-text">
+        <span class="stroke-text-white">War </span>of Wits
+      </h1>
+    @if(!no_quiz)
+    @each(quiz in quizzes)
+    <div class="event-card">
+        <div class="event-info">
+        <a href="/quiz/{{ quiz.id }}">
+        <h2 class="event-title accent-text">{{ quiz.title }}</h2>
+        <p class="event-tagline">{{ quiz.topic }}</p>
+        </a>
+        <p class="event-desc">
+        HERE YOU CAN WRITE SOMETHING MORE IF U LIKE
+        </p>
         </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-
-        @each(quiz in quizzes)
-          <div class="post-preview">
-            <a href="/quiz/{{ quiz.id }}">
-              <h2 class="post-title">
-
-                  <br>
-                  {{ quiz.title }}
-                </h2>
-                <h3 class="post-subtitle">
-                  {{ quiz.topic }}
-                </h3>
-                <!--
-                <h3 class="post-subtitle">
-                  {{ post.content }}
-                </h3>
-                -->
-            </a>
-            <p class="post-meta">Created by
-              <a href="#"> {{ quiz.author.username }} </a>
-              on {{ quiz.createdAt }}
-            </p>
-          </div>
-          <hr>
-        @endeach
-        <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Older Quizzes &rarr;</a>
+        <div class="event-img-wrapper">
+        <a href="/quiz/quiz_id">
+        <img
+        src="https://images.pexels.com/photos/355904/pexels-photo-355904.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        alt="quuiz" class="event-image" /></a>
         </div>
-      </div>
-    </div>
-  </div>
+        </div>
+    @endeach
 
-  <hr>
+    @else
+    <h1 class="events-title accent-text">
+        No quiz present currently
+    </h1>
+    @endif
 
+
+
+  <!-- Pager -->
+
+  <button class="register-button" type="button">Older Quizzes</button>
+
+@endsection
+
+@section('firebase')
+@endsection
+
+@section('scripts')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 @endsection

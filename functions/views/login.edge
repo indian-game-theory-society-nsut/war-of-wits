@@ -1,70 +1,58 @@
 @layout('layouts.app')
 
+@section('title')
+Login | War of Wits
+@endsection
+
+@section('styles')
+<style>
+    #loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+    }
+
+    /* Safari */
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+@endsection
+
 @section('content')
-<!--
-<h1> Create New Post </h1> 
--->
-<!-- Page Header -->
-<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
-    <div class="overlay"></div>
-    <div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="page-heading">
-            <h1>Login</h1>
-        </div>
-        </div>
+    <h1 class="events-title accent-text">Login Page</h1>
+    <!-- Page Header -->
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">
+        <!--
+        <h4 class="events-title accent-text">Please Wait...</h4>
+        -->
     </div>
-    </div>
-</header>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-
-
-                <!-- encType Tells that multimedia is encrypted and sent to server -->
-            <!--
-
-            <form action="/users/login" method="POST"> 
-
-                    <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Email ...">
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" placeholder="Password ...">
-                    </div>
-                </div>
-
-                <div class="form-group my-4 text-center">
-                    <button class="btn btn-primary">Login</button>
-                </div>
-            </form>
-
-
-            -->
-        </div>
-    </div>
-</div>
-
-<div id="firebaseui-auth-container"></div>
-<div id="loader">Loading...</div>
-
-
 @endsection
 
 @section('firebase')
-
 <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-
 <script src="/js/login.js"></script>
+@endsection
 
-
+@section('scripts')
 @endsection

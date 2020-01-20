@@ -2,7 +2,7 @@ const admin = require('firebase-admin');
 const db = admin.firestore();
 
 module.exports = (req, res) => {
-    db.collection('quiz').where('start_time', '>', new Date()).get()
+    db.collection('quiz').where('end_time', '>', new Date()).get()
     .then(snapshot => {
         no_quiz = false
         quizzes = new Array()

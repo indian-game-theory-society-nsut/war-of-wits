@@ -1,28 +1,19 @@
 @layout('layouts.app')
 
+@section('title')
+404 Page Not Found | War of Wits
+@endsection
+
+@section('styles')
+@endsection
 
 @section('content')
+  <h1> 404 PAGE NOT FOUND </h1>
+  <h2 class="event-tagline event-title"><a href="index.html"> Return back to Home</a></h2>
+@endsection
 
-<!--
-    <h1> The 404 Page </h1>
--->
+@section('firebase')
+@endsection
 
-<!-- Page Header -->
-<header class="masthead" style="background-image: url(' {{ posts.image }} ')">
-    <div class="overlay"></div>
-    <div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="post-heading">
-            <h1> 404 PAGE NOT FOUND </h1>
-            <h2 class="subheading"><a href="/"> Return back to Home</h2>
-        </div>
-        </div>
-    </div>
-    </div>
-</header>
-
-
-<hr>
-
+@section('scripts')
 @endsection

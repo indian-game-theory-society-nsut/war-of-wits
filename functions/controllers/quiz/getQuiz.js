@@ -14,6 +14,7 @@ module.exports = async (req,res) => {
             return res.redirect('/')
         }
         else {
+            console.log('Quiz found');
             // console.log('Document data:', doc.data().end_time);
             quiz = doc.data()
         }
@@ -23,21 +24,22 @@ module.exports = async (req,res) => {
     });
     currDate = new Date()
     if(currDate.getTime() < quiz.start_time.toDate().getTime() || currDate.getTime() > quiz.end_time.toDate().getTime()) {
+        // Quiz has not started yet or has already ended
         // return res.redirect('/')
     }
-    await db.collection('user').where('id', '==', quiz.author).get()
-    .then(doc => {
-        if (doc.empty) {
-            console.log('No such author');
-        }
-        doc.forEach(doc => {
-            author = doc.data()
-        });
-    })
-    .catch(err => {
-        console.log('Error getting document', err);
-        // return res.redirect('/')
-    });
+    // await db.collection('user').where('id', '==', quiz.author).get()
+    // .then(doc => {
+    //     if (doc.empty) {
+    //         console.log('No such author');
+    //     }
+    //     doc.forEach(doc => {
+    //         author = doc.data()
+    //     });
+    // })
+    // .catch(err => {
+    //     console.log('Error getting document', err);
+    //     // return res.redirect('/')
+    // });
 
     await db.collection('question').where('quiz', '==', quiz_id).get()
     .then(snapshot => {
@@ -46,7 +48,7 @@ module.exports = async (req,res) => {
         }
         questions = new Array()
         snapshot.forEach(doc => {
-            console.log(doc.id, '=>', doc.data());
+            // console.log(doc.id, '=>', doc.data());
             questions.push(doc.data())
         });
     })
@@ -62,7 +64,6 @@ module.exports = async (req,res) => {
     res.render('quiz', {
         quiz,
         questions,
-        author,
         quiz_id
     })
 };

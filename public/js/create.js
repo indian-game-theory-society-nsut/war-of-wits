@@ -4,20 +4,6 @@
 // https://stackoverflow.com/questions/20961101/dynamically-creating-multiple-inputs-simultaneously
 // https://www.w3schools.com/jsref/met_node_appendchild.asp
 
-var QuestionString = `
-    <div class="control-group">
-        <div class="form-group floating-label-form-group controls">
-            <label>Question</label>
-            <textarea name="questionText" placeholder="Question ..." cols="30" rows="3" class="form-control"></textarea>
-        </div>
-    </div>
-
-    <div class="form-group-5">
-        <label>Image</label>
-        <input type="file" name="questionImage" class="form-control-file">
-    </div>
-`;
-
 function addQuestion() {
     var questionList = document.getElementById("questionList");
     var selectQuestionType = document.getElementById("selectQuestionType").value;
@@ -78,19 +64,16 @@ function addQuestion() {
     }
     var QuestionNode = document.createElement("DIV");
     var QuestionTextNode = document.createElement("DIV");
-    QuestionTextNode.classList.add("control-group");
     var question_id = create_UUID().replace(/-/g, '');
     var QuestionText = `
-        <div class="form-group floating-label-form-group controls">
-            <button onclick="removeQuestion(this)" style="float:right;margin-top:10px;margin-bottom:10px;" type="button">
-                <i class="fas fa-minus"></i>
-            </button>
-            <label>Question</label>
-            <textarea name="question_text" placeholder="Question ..." cols="30" rows="3" class="form-control"></textarea>
-            ${answerTag}
-            <input type="text" name="question_type" class="form-control-file" value=${selectQuestionType} hidden>
-            <input type="text" name="question_id" class="form-control-file question-id-class" value=${question_id} hidden>
-        </div>
+        <button onclick="removeQuestion(this)" style="float:right;margin-top:10px;margin-bottom:10px;" type="button" class="register-button">
+            <i class="fa fa-minus"></i>
+        </button>
+        <label class="accent-text">Question</label>
+        <textarea name="question_text" placeholder="Question ..." cols="30" rows="3" class="form-control"></textarea>
+        ${answerTag}
+        <input type="text" name="question_type" class="form-control-file" value=${selectQuestionType} hidden>
+        <input type="text" name="question_id" class="form-control-file question-id-class" value=${question_id} hidden>
     `;
     QuestionTextNode.innerHTML = QuestionText;
 
@@ -98,14 +81,13 @@ function addQuestion() {
     QuestionNode.appendChild(QuestionTextNode);
 
     var QuestionImageNode = document.createElement("DIV");
-    QuestionImageNode.classList.add("form-group-5");
     if(selectAddImage == "yes") {
         var QuestionImage = `
             <label>Image</label>
             <progress value="0" max="100" class="uploader">0%</progress>
             <input type="file" name="questionImage" class="form-control-file question-image">
             <input type="text" name="questionImageURL" class="form-control-file question-image-url" value="" hidden>
-            <button onclick="uploadImage(this)" type="button">Upload</button>
+            <button onclick="uploadImage(this)" type="button" class="register-button">Upload</button>
         `;
         QuestionImageNode.innerHTML = QuestionImage;
     }
@@ -117,12 +99,14 @@ function addQuestion() {
     }
     // questionList.appendChild(QuestionImageNode);
     QuestionNode.appendChild(QuestionImageNode);
+    QuestionNode.classList.add("question_node");
 
     questionList.appendChild(QuestionNode);
+    questionList.appendChild(document.createElement("HR"));
 }
 
 function removeQuestion(ele) {
-    ele.parentNode.parentNode.parentNode.parentNode.removeChild(ele.parentNode.parentNode.parentNode);
+    ele.parentNode.parentNode.parentNode.removeChild(ele.parentNode.parentNode);
 }
 
 function validateQuestion(question_type, idx, category_idx, errorsSet) {
