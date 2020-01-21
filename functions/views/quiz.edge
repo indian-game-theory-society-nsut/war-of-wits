@@ -20,9 +20,10 @@ Quiz | War of Wits
         @endif
         @endeach
     </h1>
-    <form action="/response/store" method="POST" id="response_form">
+    <form action="/response/{{ quiz_id }}" method="POST" id="response_form">
     @each(question in questions)
         <div class="question_node">
+            <input type="text" name="question_id" value="{{ question.id }}" hidden>
             <h5>Question {{ $loop.index + 1 }}</h5>
             @if(question.image != "Image Absent")
                 <img src="{{question.image}}" alt="Question Image">
@@ -31,22 +32,22 @@ Quiz | War of Wits
             @if(question.options.length == 0)
                 <!-- Text Answer Type -->
                 <label>Answer</label>
-                <input type="text" name="answer_text" class="form-control" placeholder="Answer ..."><br>
+                <input type="text" name="answer{{$loop.index}}" class="form-control" placeholder="Answer ..."><br>
             @else
                 @if(question.answer.length == 1)
                     <!-- Single Correct Choice -->
                     Select the correct answer<br>
-                    <input type="radio" name="answer_single" value="1">{{ question.options[0] }}<br>
-                    <input type="radio" name="answer_single" value="2">{{ question.options[1] }}<br>
-                    <input type="radio" name="answer_single" value="3">{{ question.options[2] }}<br>
-                    <input type="radio" name="answer_single" value="4">{{ question.options[3] }}<br>
+                    <input type="radio" name="answer{{$loop.index}}" value="{{ question.options[0] }}">{{ question.options[0] }}<br>
+                    <input type="radio" name="answer{{$loop.index}}" value="{{ question.options[1] }}">{{ question.options[1] }}<br>
+                    <input type="radio" name="answer{{$loop.index}}" value="{{ question.options[2] }}">{{ question.options[2] }}<br>
+                    <input type="radio" name="answer{{$loop.index}}" value="{{ question.options[3] }}">{{ question.options[3] }}<br>
                 @else
                     <!-- Multiple Correct Choice -->
                     Select the correct answers<br>
-                    <input type="checkbox" name="answer_multiple" value="1">{{ question.options[0] }}<br>
-                    <input type="checkbox" name="answer_multiple" value="2">{{ question.options[1] }}<br>
-                    <input type="checkbox" name="answer_multiple" value="3">{{ question.options[2] }}<br>
-                    <input type="checkbox" name="answer_multiple" value="4">{{ question.options[3] }}<br>
+                    <input type="checkbox" name="answer{{$loop.index}}" value="{{ question.options[0] }}">{{ question.options[0] }}<br>
+                    <input type="checkbox" name="answer{{$loop.index}}" value="{{ question.options[1] }}">{{ question.options[1] }}<br>
+                    <input type="checkbox" name="answer{{$loop.index}}" value="{{ question.options[2] }}">{{ question.options[2] }}<br>
+                    <input type="checkbox" name="answer{{$loop.index}}" value="{{ question.options[3] }}">{{ question.options[3] }}<br>
                 @endif
             @endif
         </div>

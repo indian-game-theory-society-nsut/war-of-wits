@@ -1,9 +1,5 @@
-const path = require('path')
-const { uuid } = require('uuidv4')
 const admin = require('firebase-admin');
 const db = admin.firestore();
-const storage = admin.storage();
-const fs = require('fs')
 
 async function addQuestion(question_type, idx, category_idx, req) {
     var ans = new Array();
@@ -29,22 +25,24 @@ async function addQuestion(question_type, idx, category_idx, req) {
         // Single Answer type
         const { answer_single, option_single1, option_single2, option_single3, option_single4 } = req.body;
         if(typeof(answer_single) == 'string') {
-            ans.push(new Array(
-                option_single1,
-                option_single2,
-                option_single3,
-                option_single4
-            ))
-            ans.push(new Array(answer_single));
+            var temp_options = {
+                "1": option_single1,
+                "2": option_single2,
+                "3": option_single3,
+                "4": option_single4
+            }
+            ans.push(new Array(temp_options["1"], temp_options["2"], temp_options["3"], temp_options["4"]))
+            ans.push(new Array(temp_options[answer_single]));
         }
         else {
-            ans.push(new Array(
-                option_single1[category_idx],
-                option_single2[category_idx],
-                option_single3[category_idx],
-                option_single4[category_idx]
-            ))
-            ans.push(new Array(answer_single[category_idx]));
+            var temp_options = {
+                "1": option_single1[category_idx],
+                "2": option_single2[category_idx],
+                "3": option_single3[category_idx],
+                "4": option_single4[category_idx]
+            }
+            ans.push(new Array(temp_options["1"], temp_options["2"], temp_options["3"], temp_options["4"]))
+            ans.push(new Array(temp_options[answer_single[category_idx]]));
         }
     }
     else if(curr_question_type == "Multiple") {
@@ -58,12 +56,12 @@ async function addQuestion(question_type, idx, category_idx, req) {
                 option_multiple3,
                 option_multiple4
             ))
-            ans.push(new Array(
-                answer_multiple1,
-                answer_multiple2,
-                answer_multiple3,
-                answer_multiple4
-            ))
+            var temp_ans = new Array();
+            if(option_multiple1 == "yes") { temp_ans.push(answer_multiple1) }
+            if(option_multiple2 == "yes") { temp_ans.push(answer_multiple2) }
+            if(option_multiple3 == "yes") { temp_ans.push(answer_multiple3) }
+            if(option_multiple4 == "yes") { temp_ans.push(answer_multiple4) }
+            ans.push(temp_ans);
         }
         else {
             ans.push(new Array(
@@ -72,12 +70,12 @@ async function addQuestion(question_type, idx, category_idx, req) {
                 option_multiple3[category_idx],
                 option_multiple4[category_idx]
             ))
-            ans.push(new Array(
-                answer_multiple1[category_idx],
-                answer_multiple2[category_idx],
-                answer_multiple3[category_idx],
-                answer_multiple4[category_idx]
-            ))
+            var temp_ans = new Array();
+            if(option_multiple1[category_idx] == "yes") { temp_ans.push(answer_multiple1[category_idx]) }
+            if(option_multiple2[category_idx] == "yes") { temp_ans.push(answer_multiple2[category_idx]) }
+            if(option_multiple3[category_idx] == "yes") { temp_ans.push(answer_multiple3[category_idx]) }
+            if(option_multiple4[category_idx] == "yes") { temp_ans.push(answer_multiple4[category_idx]) }
+            ans.push(temp_ans);
         }
     }
     return ans;
@@ -85,11 +83,22 @@ async function addQuestion(question_type, idx, category_idx, req) {
 
 module.exports = async (req,res) => {
     const { quizTitle, quizTopic, start_date, start_time, end_date, end_time, quiz_id } = req.body;
+
+    var quiz_start_date = new Date(start_date + " " + start_time);
+
+    var quiz_end_date = new Date(end_date + " " + end_time);
+
+    // Comment below 4 lines if running locally
+    quiz_start_date.setHours(quiz_start_date.getHours()-5);
+    quiz_start_date.setMinutes(quiz_start_date.getMinutes()-30);
+    quiz_end_date.setHours(quiz_end_date.getHours()-5);
+    quiz_end_date.setMinutes(quiz_end_date.getMinutes()-30);
+
     const QuizObject = {
         title: quizTitle,
         topic: quizTopic,
-        start_time: new Date(start_date + " " + start_time),
-        end_time: new Date(end_date + " " + end_time),
+        start_time: quiz_start_date,
+        end_time: quiz_end_date,
         author: req.session.userId
     }
     try {
@@ -109,6 +118,7 @@ module.exports = async (req,res) => {
         console.log("Single Questions")
         ans = await addQuestion(question_type, 0, 0, req);
         QuestionObject = {
+            idx: 1,
             text: question_text,
             image: questionImageURL,
             options: ans[0],
@@ -138,6 +148,7 @@ module.exports = async (req,res) => {
         for(i = 0;i < question_type.length;i++) {
             ans = await addQuestion(question_type, i, num_question_types[question_type[i]], req);
             QuestionObject = {
+                idx: (i + 1),
                 text: question_text[i],
                 image: questionImageURL[i],
                 options: ans[0],

@@ -44,9 +44,6 @@ const storeQuizController = require('./controllers/quiz/storeQuiz')
 
 const storeResponseController = require('./controllers/user/storeResponse')
 
-const createUserController = require('./controllers/user/createUser')
-const storeUserController = require('./controllers/user/storeUser')
-
 const loginPageController = require('./controllers/user/loginPage')
 const loginUserController = require('./controllers/user/loginUser')
 
@@ -98,20 +95,16 @@ app.set('views',`${__dirname}/views`)
 // ============================================ Creating actions for requests ============================================
 app.get('/', homePageController)
 
-app.get('/quizzes/new', createQuizController)
-app.post('/quizzes/store', storeQuizMiddleware, storeQuizController)
-app.get('/quiz/:id', getQuizController)
-app.post('/response/:id', authMiddleware, storeResponseController)
+app.get('/quizzes/new', authMiddleware, createQuizController)
+app.post('/quizzes/store', storeQuizMiddleware, authMiddleware, storeQuizController)
+app.get('/quiz/:id', authMiddleware, getQuizController)
 
-// app.get('/auth/register', redirectIfAuthenticated, createUserController)
-// app.post('/users/register', redirectIfAuthenticated, storeUserController)
+app.post('/response/:id', authMiddleware, storeResponseController)
 
 app.get('/auth/login', redirectIfAuthenticated, loginPageController)
 app.post('/users/login', redirectIfAuthenticated, loginUserController)
 
 app.get('/auth/logout', authMiddleware, logoutController)
-// Below command is not able to logout but redirects to main page without logging out WHY?
-// app.get('/auth/logout', redirectIfAuthenticated, logoutController)
 
 app.use((req, res) => {
     res.render('not-found')

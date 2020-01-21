@@ -247,14 +247,14 @@ function validateData() {
 
 var quiz_id = create_UUID().replace(/-/g, '');
 document.getElementById("quiz_id_tag").value = quiz_id;
-// Your web app's Firebase configuration
-var firebaseConfig = {
-    storageBucket: "war-of-wits.appspot.com"
-};
-// Initialize Firebase
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
+// // Your web app's Firebase configuration
+// var firebaseConfig = {
+//     storageBucket: "war-of-wits.appspot.com"
+// };
+// // Initialize Firebase
+// if (!firebase.apps.length) {
+//     firebase.initializeApp(firebaseConfig);
+// }
 
 
 function uploadImage(ele) {

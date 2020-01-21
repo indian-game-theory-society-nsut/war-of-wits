@@ -27,21 +27,8 @@ module.exports = async (req,res) => {
         // Quiz has not started yet or has already ended
         // return res.redirect('/')
     }
-    // await db.collection('user').where('id', '==', quiz.author).get()
-    // .then(doc => {
-    //     if (doc.empty) {
-    //         console.log('No such author');
-    //     }
-    //     doc.forEach(doc => {
-    //         author = doc.data()
-    //     });
-    // })
-    // .catch(err => {
-    //     console.log('Error getting document', err);
-    //     // return res.redirect('/')
-    // });
 
-    await db.collection('question').where('quiz', '==', quiz_id).get()
+    await db.collection('question').where('quiz', '==', quiz_id).orderBy('idx').get()
     .then(snapshot => {
         if (snapshot.empty) {
             console.log('No matching questions.');
@@ -49,7 +36,9 @@ module.exports = async (req,res) => {
         questions = new Array()
         snapshot.forEach(doc => {
             // console.log(doc.id, '=>', doc.data());
-            questions.push(doc.data())
+            curr = doc.data()
+            curr['id'] = doc.id
+            questions.push(curr)
         });
     })
     .catch(err => {
