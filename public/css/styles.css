@@ -212,3 +212,187 @@
 .map-col {
     display: block;
 }
+
+.nav{
+  z-index: 1;
+}
+
+
+@media only screen and (max-width: 641px) {
+  section {
+    padding: 10px 20px;
+  }
+  .esummitlogo {
+    transform: translateX(-10px) translateY(-15px);
+  }
+  .booom {
+    display: initial;
+  }
+  
+
+  .about-us::before,
+  .about-us::after,
+  .events-section::before,
+  .events-section::after,
+  .speakers-section::before,
+  .speakers-section::after,
+  .associations-section::before,
+  .associations-section::after,
+  .team-section::before,
+  .intro-section::after {
+    height: 70px;
+  }
+  .about-us::before,
+  .events-section::before,
+  .speakers-section::before,
+  .associations-section::before,
+  .team-section::before {
+    top: -70px;
+  }
+
+  .about-us::after,
+  .events-section::after,
+  .speakers-section::after,
+  .associations-section::after,
+  .intro-section::after {
+    bottom: -70px;
+  }
+
+  .about-us,
+  .events-section,
+  .speakers-section,
+  .associations-section,
+  .intro-section {
+    margin-bottom: 70px;
+  }
+
+  .team-section {
+    margin-bottom: 50px;
+  }
+  .team-section::after {
+    bottom: -50px;
+    height: 50px;
+  }
+
+  .footer-section::before,
+  .footer-section::after {
+    height: 50px;
+    top: -50px;
+  }
+
+  .about-us::before,
+  .about-us::after,
+  .events-section::before,
+  .events-section::after,
+  .speakers-section::before,
+  .speakers-section::after,
+  .associations-section::before,
+  .associations-section::after,
+  .team-section::before,
+  .intro-section::after {
+    height: 70px;
+  }
+  .about-us::before,
+  .events-section::before,
+  .speakers-section::before,
+  .associations-section::before,
+  .team-section::before {
+    top: -70px;
+  }
+
+  .about-us::after,
+  .events-section::after,
+  .speakers-section::after,
+  .associations-section::after,
+  .intro-section::after {
+    bottom: -70px;
+  }
+
+  .about-us,
+  .events-section,
+  .speakers-section,
+  .associations-section {
+    margin-bottom: 70px;
+  }
+
+  .team-section {
+    margin-bottom: 50px;
+  }
+  .team-section::after {
+    bottom: -50px;
+    height: 50px;
+  }
+
+  .footer-section::before,
+  .footer-section::after {
+    height: 50px;
+    top: -50px;
+  }
+
+  /* Intro section styles */
+
+  /* .intro-section {
+    flex-direction: column;
+  } */
+  .our-info-wrapper {
+    padding: 0 2em;
+  }
+
+  /* Event styles */
+
+  .event-card {
+    padding: 0 0.8em;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 43vw;
+    height: 30vh;
+  }
+
+  .event-info {
+    order: 2;
+    text-align: center;
+    justify-content: center;
+    width: 110%;
+  }
+
+  .event-title {
+    font-size: 1.2em;
+    width: 100%;
+  }
+  .event-desc {
+    display: none;
+  }
+  .event-image {
+    vertical-align: top;
+  }
+  ::selection {
+    background: grey;
+    color: whitesmoke;
+  }
+
+  .speakers-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 120vw;
+  }
+  .speakercard {
+    width: 40vw;
+    height: 35vh;
+    display: inline-flexbox;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #444141d3;
+    background-position-x: -60px;
+    color: #e68625;
+    background-blend-mode: multiply;
+    margin: 12px;
+    background-size: cover;
+    transition: 0.2s transform ease-in-out;
+  }
+
+ 
+}
