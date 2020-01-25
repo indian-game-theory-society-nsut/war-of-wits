@@ -59,6 +59,10 @@
         /* Nav Bar media Queries */
     
         @media (max-width:680px) {
+
+          .nav{
+            z-index: 1;
+          }
           .nav>.nav-btn {
             display: inline-block;
             position: absolute;
@@ -169,34 +173,10 @@
             <label>Answer</label>
             <input type="text" name="answer_text" class="form-control" placeholder="Answer ...">
         </div>
-        <hr>
-
-        <div class="question_node">
-            <img src="QuestionImage.jpg" alt="Question Image">
-            <label>Question</label>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit amet et sapiente, veritatis architecto</p>
-            Select the correct answer<br>
-            <input type="radio" name="answer_single" value="1">Option 1
-            <input type="radio" name="answer_single" value="2">Option 2
-            <input type="radio" name="answer_single" value="3">Option 3
-            <input type="radio" name="answer_single" value="4">Option 4
-        </div>
-        <hr>
-
-        <div class="question_node">
-            <img src="QuestionImage.jpg" alt="Question Image">
-            <label>Question</label>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit amet et sapiente, veritatis architecto</p>
-            Select the correct answers<br>
-            <input type="checkbox" name="answer_multiple" value="1">Option 1
-            <input type="checkbox" name="answer_multiple" value="2">Option 2
-            <input type="checkbox" name="answer_multiple" value="3">Option 3
-            <input type="checkbox" name="answer_multiple" value="4">Option 4
-
-        </div>
-        <hr>
+        
         
         <button type="submit" class="register-button">Submit Quiz</button>
+        <button type="submit" class="register-button next-button">Next</button>
     </form>
 
     <ul id="quiz-errors-list">
