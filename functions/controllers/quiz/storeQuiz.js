@@ -129,7 +129,7 @@ module.exports = async (req,res) => {
         try {
             await db.collection('question').doc(`/${question_id}/`).create(QuestionObject);
             console.log("done question")
-            return res.redirect('/')
+            return res.redirect('/startquiz')
             // return res.status(200).send();
         }
         catch (error) {
@@ -169,7 +169,7 @@ module.exports = async (req,res) => {
                 return res.redirect('/quizzes/new')
             }
         }
-        return res.redirect('/')
+        return res.redirect('/startquiz')
     }
 
 

@@ -14,7 +14,7 @@ module.exports = async (req,res) => {
         try {
             await db.collection('response').doc(`/${response_id}/`).create(ResponseObject);
             console.log("done single response")
-            return res.redirect('/')
+            return res.redirect('/startquiz')
         }
         catch (error) {
             req.flash('data', ResponseObject)
@@ -37,6 +37,6 @@ module.exports = async (req,res) => {
                 return res.redirect(`/quiz/${quiz_id}`)
             }
         }
-        return res.redirect('/')
+        return res.redirect('/startquiz')
     }
 };

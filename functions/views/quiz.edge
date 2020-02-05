@@ -20,41 +20,46 @@ Quiz | War of Wits
         @endif
         @endeach
     </h1>
-    <form action="/response/{{ quiz_id }}" method="POST" id="response_form">
-    @each(question in questions)
-        <div class="question_node">
-            <input type="text" name="question_id" value="{{ question.id }}" hidden>
-            <h5>Question {{ $loop.index + 1 }}</h5>
-            @if(question.image != "Image Absent")
-                <img src="{{question.image}}" alt="Question Image">
-            @endif
-            <p>{{ question.text }}</p>
-            @if(question.options.length == 0)
-                <!-- Text Answer Type -->
-                <label>Answer</label>
-                <input type="text" name="answer{{$loop.index}}" class="form-control" placeholder="Answer ..."><br>
+
+    <div class="question_node">
+        <input type="text" id="user_id" value="{{ auth }}" hidden>
+        <input type="text" id="quiz_id" value="{{ global_quiz_id }}" hidden>
+        <input type="text" id="question_id" value="{{ curr_question.id }}" hidden>
+        <h3 id="question_num">Question {{ response_num + 1 }}</h3>
+        @if(curr_question.image != "Image Absent")
+            <img src="{{curr_question.image}}" alt="question image" id="question_image">
+        @else
+            <img src="" alt="question image" id="question_image" style="display: none;">
+        @endif
+        <p id="question_text">{{ curr_question.text }}</p>
+
+        <div id="answer_div">
+        @if(curr_question.options.length == 0)
+            <!-- Text Answer Type -->
+            <label>Answer</label>
+            <input type="text" name="answer" class="form-control" placeholder="Answer ..."><br>
+        @else
+            @if(curr_question.answer.length == 1)
+                <!-- Single Correct Choice -->
+                Select the correct answer<br>
+                <input type="radio" name="answer" value="{{ curr_question.options[0] }}">{{ curr_question.options[0] }}<br>
+                <input type="radio" name="answer" value="{{ curr_question.options[1] }}">{{ curr_question.options[1] }}<br>
+                <input type="radio" name="answer" value="{{ curr_question.options[2] }}">{{ curr_question.options[2] }}<br>
+                <input type="radio" name="answer" value="{{ curr_question.options[3] }}">{{ curr_question.options[3] }}<br>
             @else
-                @if(question.answer.length == 1)
-                    <!-- Single Correct Choice -->
-                    Select the correct answer<br>
-                    <input type="radio" name="answer{{$loop.index}}" value="{{ question.options[0] }}">{{ question.options[0] }}<br>
-                    <input type="radio" name="answer{{$loop.index}}" value="{{ question.options[1] }}">{{ question.options[1] }}<br>
-                    <input type="radio" name="answer{{$loop.index}}" value="{{ question.options[2] }}">{{ question.options[2] }}<br>
-                    <input type="radio" name="answer{{$loop.index}}" value="{{ question.options[3] }}">{{ question.options[3] }}<br>
-                @else
-                    <!-- Multiple Correct Choice -->
-                    Select the correct answers<br>
-                    <input type="checkbox" name="answer{{$loop.index}}" value="{{ question.options[0] }}">{{ question.options[0] }}<br>
-                    <input type="checkbox" name="answer{{$loop.index}}" value="{{ question.options[1] }}">{{ question.options[1] }}<br>
-                    <input type="checkbox" name="answer{{$loop.index}}" value="{{ question.options[2] }}">{{ question.options[2] }}<br>
-                    <input type="checkbox" name="answer{{$loop.index}}" value="{{ question.options[3] }}">{{ question.options[3] }}<br>
-                @endif
+                <!-- Multiple Correct Choice -->
+                Select the correct answers<br>
+                <input type="checkbox" name="answer" value="{{ curr_question.options[0] }}">{{ curr_question.options[0] }}<br>
+                <input type="checkbox" name="answer" value="{{ curr_question.options[1] }}">{{ curr_question.options[1] }}<br>
+                <input type="checkbox" name="answer" value="{{ curr_question.options[2] }}">{{ curr_question.options[2] }}<br>
+                <input type="checkbox" name="answer" value="{{ curr_question.options[3] }}">{{ curr_question.options[3] }}<br>
             @endif
+        @endif
         </div>
-        <hr>
-    @endeach
-        <button type="submit" class="register-button">Submit Quiz</button>
-    </form>
+
+    </div>
+    <hr>
+    <button type="button" class="register-button" onclick="getNextQuestion()">Save & Next</button>
 
     <ul id="quiz-errors-list">
     </ul>
@@ -62,8 +67,17 @@ Quiz | War of Wits
 @endsection
 
 @section('firebase')
+<script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-firestore.js"></script>
+<script>
+    var question_idx = parseInt("{{ response_num + 1 }}");
+    var questions_arr = new Array();
+    @each(question in questions)
+        questions_arr.push("{{ question.id }}")
+    @endeach
+    // console.log(questions_arr)
+</script>
+<script src="/js/quiz.js"></script>
 @endsection
 
 @section('scripts')
-<script src="/js/quiz.js"></script>
 @endsection

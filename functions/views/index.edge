@@ -1,52 +1,30 @@
 @layout('layouts.app')
 
 @section('title')
-War of Wits
+Quiz | War of Wits
 @endsection
 
 @section('styles')
 @endsection
 
 @section('content')
-
-    <!-- Page Header -->
-
-      <h1 class="events-title accent-text">
-        <span class="stroke-text-white">War </span>of Wits
-      </h1>
-    @if(!no_quiz)
-    @each(quiz in quizzes)
-    <div class="event-card">
-        <div class="event-info">
-        <a href="/quiz/{{ quiz.id }}">
-        <h2 class="event-title accent-text">{{ quiz.title }}</h2>
-        <p class="event-tagline">{{ quiz.topic }}</p>
-        </a>
-        <p class="event-desc">
-        HERE YOU CAN WRITE SOMETHING MORE IF U LIKE
-        </p>
-        </div>
-        <div class="event-img-wrapper">
-        <a href="/quiz/quiz_id">
-        <img
-        src="https://images.pexels.com/photos/355904/pexels-photo-355904.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-        alt="quuiz" class="event-image" /></a>
-        </div>
-        </div>
-    @endeach
-
-    @else
     <h1 class="events-title accent-text">
-        No quiz present currently
+      <span class="stroke-text-white">War </span>of Wits
     </h1>
+    
+    @if(attempted)
+        <h1 class="events-title accent-text">
+            You have already attempted this quiz
+        </h1>
+    @elseif(global_quiz_id)
+        <a href="/quiz/{{ global_quiz_id }}">
+          <button class="register-button" type="button">Start Quiz</button>
+        </a>
+    @else
+        <h1 class="events-title accent-text">
+            No quiz present currently
+        </h1>
     @endif
-
-
-
-  <!-- Pager -->
-
-  <button class="register-button" type="button">Older Quizzes</button>
-
 @endsection
 
 @section('firebase')

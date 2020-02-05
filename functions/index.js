@@ -86,6 +86,7 @@ app.use('*', (req, res, next) => {
     // Using edge templating engine, the global variable 'auth' is available on 
     // all templates rendered by our templating engine
     edge.global('auth', req.session.userId)
+    edge.global('global_quiz_id', req.session.quizId)
     next()
 })
 
@@ -93,7 +94,10 @@ app.use('*', (req, res, next) => {
 app.set('views',`${__dirname}/views`)
 
 // ============================================ Creating actions for requests ============================================
-app.get('/', homePageController)
+app.get('/', redirectIfAuthenticated, loginPageController)
+app.post('/users/login', redirectIfAuthenticated, loginUserController)
+
+app.get('/auth/logout', authMiddleware, logoutController)
 
 app.get('/quizzes/new', authMiddleware, createQuizController)
 app.post('/quizzes/store', storeQuizMiddleware, authMiddleware, storeQuizController)
@@ -101,10 +105,7 @@ app.get('/quiz/:id', authMiddleware, getQuizController)
 
 app.post('/response/:id', authMiddleware, storeResponseController)
 
-app.get('/auth/login', redirectIfAuthenticated, loginPageController)
-app.post('/users/login', redirectIfAuthenticated, loginUserController)
-
-app.get('/auth/logout', authMiddleware, logoutController)
+app.get('/startquiz', authMiddleware, homePageController)
 
 app.use((req, res) => {
     res.render('not-found')

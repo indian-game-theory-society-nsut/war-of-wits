@@ -147,12 +147,10 @@
       </div>
 
         <div class="nav-links">
-            <a href="/">Home</a>
-            @if(!auth)
-                <a href="/auth/login">Login</a>
+            @if(auth)
+              <a href="/auth/logout">Logout</a>
             @else
-                <a href="/quizzes/new">New Quiz</a>
-                <a href="/auth/logout">Logout</a>
+              <a href="/">Home</a>
             @endif
         </div>
     </div>
@@ -171,6 +169,8 @@
         const config = {
             apiKey: "AIzaSyCQ3Is6JwWXFQZVRSyc9nedqHwLuQ2damc",
             authDomain: "war-of-wits.firebaseapp.com",
+            projectId: "war-of-wits",
+            databaseURL: "https://war-of-wits.firebaseio.com",
             storageBucket: "war-of-wits.appspot.com"
         };
         firebase.initializeApp(config);
